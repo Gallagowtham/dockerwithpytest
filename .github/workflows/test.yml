@@ -28,7 +28,7 @@ jobs:
       run: sleep 15
 
     - name: Run Tests
-      run: pytest tests/ -v --override-ini="addopts="
+      run: pytest tests/ -v
 
     - name: Stop Grid
       run: docker compose down
