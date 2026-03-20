@@ -9,4 +9,8 @@ A Python Selenium automation project using Page Object Model (POM) pattern, cont
 - Docker
 - WebDriver Manager
 
+<<<<<<< Updated upstream
 ## Project Structure
+=======
+## Project Structure
+>>>>>>> Stashed changes

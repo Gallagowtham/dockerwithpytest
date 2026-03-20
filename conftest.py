@@ -1,19 +1,19 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+@pytest.fixture(scope="session", params=["chrome", "firefox"])
+def driver(request):
+    browser = request.param
 
-@pytest.fixture(scope="session")
-def driver():
-    options = Options()
-    options.add_argument("--headless")  # Docker lo GUI ledu
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
+    if browser == "chrome":
+        options = ChromeOptions()
+    else:
+        options = FirefoxOptions()
 
-    driver = webdriver.Chrome(
-        service=Service(ChromeDriverManager().install()),
+    driver = webdriver.Remote(
+        command_executor="http://localhost:4444/wd/hub",
         options=options
     )
     yield driver
